@@ -1,0 +1,12 @@
+<p *ngIf="selectedUserName; else default_text">Posts of author <strong>{{selectedUserName}}</strong></p>
+<ng-template #default_text><p>All posts</p></ng-template>
+
+<div class="posts-container">
+  <app-select-users class="select"></app-select-users>
+  <div class="post-card">
+    <div *ngFor="let post of filteredPosts">
+      <a mat-flat-button color="accent" [routerLink]="['/post', post.id]">{{post.id}}) {{post.title}}</a>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</div>

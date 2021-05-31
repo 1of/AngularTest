@@ -1,0 +1,16 @@
+.album-card {
+  width: 270px;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+.albums-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.album-card-photo > img {
+  margin-top: 1rem;
+}
+.select {
+  float: right;
+}

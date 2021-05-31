@@ -1,0 +1,17 @@
+<p *ngIf="selectedUserName; else default_text">Albums of <strong>{{selectedUserName}}</strong></p>
+<ng-template #default_text><p>All albums</p></ng-template>
+
+<app-select-users class="select"></app-select-users>
+
+<div class="albums-container">
+   <mat-card class="album-card" *ngFor="let album of filteredAlbums">
+      <mat-card-header>
+        <img mat-card-avatar src="{{album.thumbnailUrl}}" alt="{{album.title}}">
+        <mat-card-title>{{album.id}} - {{album.title}}</mat-card-title>
+      </mat-card-header>
+     <a class="album-card-photo" [routerLink]="['/album', album.id]"><img mat-card-image src="{{album.thumbnailUrl}}" alt="{{album.title}}"></a>
+      <mat-card-actions style="text-align: center;">
+        <button mat-raised-button color="primary" [routerLink]="['/album', album.id]">See Details</button>
+      </mat-card-actions>
+    </mat-card>
+</div>
