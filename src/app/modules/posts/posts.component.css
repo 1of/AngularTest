@@ -4,3 +4,8 @@
 .select {
   float: right;
 }
+@media (max-width: 400px){
+  .select{
+    float: none;
+  }
+}
