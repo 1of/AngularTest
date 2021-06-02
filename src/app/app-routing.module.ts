@@ -5,8 +5,10 @@ import { AlbumComponent } from './components/album/album.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full'},
   { path: 'posts', component: PostsComponent, data: { animation: 'posts' } },
   { path: 'post/:id', component: PostComponent,  data: { animation: 'post' } },
   { path: 'albums', component: AlbumsComponent, data: { animation: 'albums' }},

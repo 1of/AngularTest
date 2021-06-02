@@ -22,6 +22,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HomeComponent } from './components/home/home.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { NgxGalleryModule } from 'ngx-gallery-9';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +35,9 @@ import { MatSelectModule } from '@angular/material/select';
     HeaderComponent,
     PageNotFoundComponent,
     AlbumComponent,
-    PostComponent
+    PostComponent,
+    HomeComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -40,12 +48,14 @@ import { MatSelectModule } from '@angular/material/select';
     PostsModule,
     SelectUsersModule,
     MatMenuModule,
+    MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
     MatSelectModule,
     MatCardModule,
     MatIconModule,
     MatListModule,
+    NgxGalleryModule,
     MatCarouselModule.forRoot(),
   ],
   providers: [AlbumsService, PostsService],

@@ -36,7 +36,7 @@ export class AlbumsComponent implements OnInit{
 
   ngOnInit(): void {
     this.albumService.getAlbums().subscribe((albums: any)=> {
-      //console.log("Albums:", albums);
+      console.log("Albums:", albums);
       this.albums = albums;
       this.filteredAlbums = albums;
     });

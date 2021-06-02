@@ -1,11 +1,12 @@
 .post-card {
   display: inline-block;
 }
-.select {
-  float: right;
+.post-link {
+  margin-bottom: 0.5rem
 }
-@media (max-width: 400px){
-  .select{
-    float: none;
-  }
+.post-link:hover {
+  background: rgba(0,0,0,.67) ;
+}
+h2 {
+  text-align: center;
 }

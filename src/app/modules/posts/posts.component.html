@@ -1,12 +1,11 @@
-<p *ngIf="selectedUserName; else default_text">Posts of author <strong>{{selectedUserName}}</strong></p>
-<ng-template #default_text><p>All posts</p></ng-template>
-
+<h2 *ngIf="selectedUserName!=='all'; else default_text"><strong>{{selectedUserName | uppercase}}</strong></h2>
+<ng-template #default_text><h2>All posts</h2></ng-template>
+<h2 *ngIf="!selectedUserName"><strong>Posts</strong></h2>
+<app-select-users class="select"></app-select-users>
 <div class="posts-container">
-  <app-select-users class="select"></app-select-users>
   <div class="post-card">
     <div *ngFor="let post of filteredPosts">
-      <a mat-flat-button color="accent" [routerLink]="['/post', post.id]">{{post.id}}) {{post.title}}</a>
-      <mat-divider></mat-divider>
+      <a mat-flat-button color="primary" class="post-link" [routerLink]="['/post', post.id]">{{post.id}}) {{post.title}}</a>
     </div>
   </div>
 </div>

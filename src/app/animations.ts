@@ -8,25 +8,16 @@ import {
 export const slideInAnimation =
   trigger('routeAnimation', [
     transition('albums <=> album, posts <=> post', [
-      style({ position: 'relative' }),
-      query(':enter, :leave', [
-        style({
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%'
-        })
-      ]),
       query(':enter', [
-        style({ left: '-100%'})
+        style({ opacity: 0})
       ]),
       query(':leave', animateChild()),
       group([
         query(':leave', [
-          animate('300ms ease-out', style({ left: '100%', opacity: 0}))
+          animate('300ms ease-out', style({ opacity: 0}))
         ]),
         query(':enter', [
-          animate('300ms ease-out', style({ left: '0%', opacity: 1}))
+          animate('300ms ease-out', style({ opacity: 1}))
         ])
       ]),
       query(':enter', animateChild()),

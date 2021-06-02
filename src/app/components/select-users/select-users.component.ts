@@ -14,10 +14,13 @@ export class SelectUsersComponent implements OnInit{
 
   change(event: any, id: number)  {
     if(event.isUserInput) {
-      //console.log("Selected event", event.source.value);
+      console.log("Selected event", event.source.value);
       this.usersService.sendUserId(id);
       this.usersService.sendUserName(event.source.value);
     }
+  }
+  selectUser(event: Event) {
+    console.log(event)
   }
 
   ngOnInit(): void {

@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {switchMap, map} from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { AlbumsService } from '../../modules/albums/albums.service';
-import { Orientation } from '@ngbmodule/material-carousel';
-import { ThemePalette } from '@angular/material/core';
 import 'hammerjs';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery-9';
 
 @Component({
   selector: 'app-album',
@@ -13,40 +12,57 @@ import 'hammerjs';
 })
 export class AlbumComponent implements OnInit{
   public album: any;
-  public albumPhotos: any[] = [];
+  public galleryOptions: NgxGalleryOptions[];
+  public galleryImages: NgxGalleryImage[];
   public userInfo: any;
-  // Carousel settings
-  public timings = '250ms ease-in';
-  public autoplay = true;
-  public interval = 5000;
-  public loop = true;
-  public hideArrows = false;
-  public hideIndicators = false;
-  public color: ThemePalette = 'accent';
-  public maxWidth = 'auto';
-  public maintainAspectRatio = true;
-  public proportion = 25;
-  public slideHeight = '200px';
-  public slides = this.albumPhotos.length;
-  public useKeyboard = true;
-  public useMouseWheel = true;
-  public orientation: Orientation = 'ltr';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private albumService: AlbumsService) {
     this.userInfo = {name: ""};
     this.album = {title: ""};
+    this.galleryOptions = [];
+    this.galleryImages = [];
   }
 
   ngOnInit(): void {
+  this.galleryOptions = [
+      {
+        width: '100%',
+        height: '600px',
+        thumbnailsColumns: 12,
+        imageSize: 'contain',
+        thumbnailSize: 'contain',
+        imageAnimation: NgxGalleryAnimation.Slide
+      },
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '600px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20
+      },
+      {
+        breakpoint: 400,
+        preview: false
+      }
+    ];
 
     this.route.paramMap.pipe(
       switchMap(params =>  params.getAll('id')),
       map(response => {
              this.albumService.getAlbumPhotos(response).subscribe((photos: any) => {
-               this.albumPhotos = [...photos];
                //console.log("photos",photos);
+               this.galleryImages = photos.map((item: any)=> {
+                 return {
+                   small: item.thumbnailUrl,
+                   medium: item.url,
+                   big: item.url
+                 }
+               });
+               //console.log("photos", this.galleryImages);
              });
              this.albumService.getAlbum(response).subscribe((album: any) => {
                this.album = {...album};

@@ -1,6 +1,12 @@
-<app-header></app-header>
-<div class="content" role="main">
-  <div [@routeAnimation]="getAnimationData(routerOutlet)">
-    <router-outlet #routerOutlet="outlet"></router-outlet>
-  </div>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header [sidenav]="sidenav"></app-header>
+    <div [@routeAnimation]="getAnimationData(routerOutlet)" class="content">
+        <router-outlet #routerOutlet="outlet"></router-outlet>
+      </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
